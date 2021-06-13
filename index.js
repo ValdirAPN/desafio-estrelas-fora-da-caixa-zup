@@ -2,12 +2,22 @@ const cards = document.getElementById('cards')
 const loader = document.getElementById('preloader')
 
 const numeroMaximoDePersonagens = 671
+let randomNumber
 
 generateRandomNumbersArray = () => {
   let randomNumbersArray = []
 
   for (let i = 0; i < 4; i++) {
-    randomNumbersArray.push(Math.floor(Math.random() * numeroMaximoDePersonagens));
+    randomNumber = Math.floor(Math.random() * numeroMaximoDePersonagens)
+
+    // Condição para impedir que números iguais
+    randomNumbersArray.forEach((number) => {
+      if (number === randomNumber) {
+        randomNumber = Math.floor(Math.random() * numeroMaximoDePersonagens)
+      }
+    })
+    
+    randomNumbersArray.push(randomNumber)
   }
 
   return randomNumbersArray.join()
